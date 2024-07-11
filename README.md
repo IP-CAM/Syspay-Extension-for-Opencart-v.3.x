@@ -1,5 +1,5 @@
 # OpenCart3.x
-提供購物車OpenCart3.x SYSPAY 金流模組, 可以較快速的方式介接綠界系統。
+提供購物車OpenCart3.x 金流模組, 可以較快速的方式介接SYSPAY金流系統。
 
 
 目錄
@@ -41,4 +41,4 @@
 
 技術支援
 -----------------
-技術客服信箱：techsupport@systexfintech.com
+技術客服信箱：syspaysuport@systexfintech.com
