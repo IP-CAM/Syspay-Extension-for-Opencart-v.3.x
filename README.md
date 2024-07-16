@@ -41,4 +41,4 @@
 
 技術支援
 -----------------
-技術客服信箱：syspaysuport@systexfintech.com
+技術客服信箱：syspaysupport@systexfintech.com
