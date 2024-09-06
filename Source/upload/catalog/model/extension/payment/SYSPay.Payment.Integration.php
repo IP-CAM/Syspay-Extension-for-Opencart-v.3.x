@@ -213,7 +213,8 @@ abstract class SYSPay_Aio
         curl_setopt($ch, CURLOPT_URL, $ServiceURL);
         curl_setopt($ch, CURLOPT_HEADER, FALSE);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, TRUE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($ch, CURLOPT_POST, TRUE);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
         $rs = curl_exec($ch);
@@ -350,7 +351,7 @@ class SYSPay_QueryTradeInfo extends SYSPay_Aio
         $arParameters['TimeStamp'] = time();
         $arFeedback = array();
         $arConfirmArgs = array();
-
+        $szCheckMacValue = '';
         
 
         // 呼叫查詢。
@@ -358,11 +359,13 @@ class SYSPay_QueryTradeInfo extends SYSPay_Aio
             $arParameters["CheckMacValue"] = SYSPay_CheckMacValue::generate($arParameters,$HashKey,$HashIV);
             // 送出查詢並取回結果。
             $szResult = parent::ServerPost($arParameters,$ServiceURL);
-            $szResult = str_replace(' ', '%20', $szResult);
-            $szResult = str_replace('+', '%2B', $szResult);
+            // $szResult = str_replace(' ', '%20', $szResult);
+            // $szResult = str_replace('+', '%2B', $szResult);
             
             // 轉結果為陣列。
-            parse_str($szResult, $arResult);
+            //parse_str($szResult, $arResult);
+            $arResult = json_decode($szResult, true );
+
             // 重新整理回傳參數。
             foreach ($arResult as $keys => $value) {
                 if ($keys == 'CheckMacValue') {
@@ -406,8 +409,8 @@ class SYSPay_QueryPeriodCreditCardTradeInfo extends SYSPay_Aio
             $arParameters["CheckMacValue"] = SYSPay_CheckMacValue::generate($arParameters,$HashKey,$HashIV);
             // 送出查詢並取回結果。
             $szResult = parent::ServerPost($arParameters,$ServiceURL);
-            $szResult = str_replace(' ', '%20', $szResult);
-            $szResult = str_replace('+', '%2B', $szResult);
+            // $szResult = str_replace(' ', '%20', $szResult);
+            // $szResult = str_replace('+', '%2B', $szResult);
             
             // 轉結果為陣列。
             $arResult = json_decode($szResult,true);
