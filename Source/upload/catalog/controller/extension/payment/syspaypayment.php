@@ -253,10 +253,10 @@ class ControllerExtensionPaymentSyspaypayment extends Controller {
                 throw new Exception($this->helper->getAmountError($order_id));
             }
 
-            $validState = $feedback['SimulatePaid'] == 1 ? true : ($this->helper->toInt($order_status_id) === $this->helper->toInt($create_status_id));
+            
             // Get the response state
             $helper_data = array(
-                'validState' => $validState,
+                'validState' => ($this->helper->toInt($order_status_id) === $this->helper->toInt($create_status_id)),
                 'orderId' => $order_id,
             );
             $response_state = $this->helper->getResponseState($feedback, $helper_data);
