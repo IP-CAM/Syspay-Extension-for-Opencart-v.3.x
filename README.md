@@ -1,4 +1,4 @@
-# OpenCart3.x
+# OpenCart 3.x
 提供購物車OpenCart3.x 金流模組, 可以較快速的方式介接SYSPAY金流系統。
 
 
